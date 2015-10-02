@@ -13,19 +13,22 @@ $(document).ready(function() {
     clearGrid();
     num1=prompt("Enter the number of columns in your grid 1-60");
     num1a=parseInt(num1);
+    createGrid(num1a);
+   defaultSettingEffect();
   });
   $("#lightenUp").click(function(){
     clearGrid();
     num2=prompt("Enter the number of columns in your grid 1-60");
      num2a=parseInt(num2);
-     prompt
      createGrid(num2a);
+     lightenUpEffect();
   });
   $("#randomColor").click(function() {
     clearGrid();
     num3=prompt("Enter the number of columns in your grid 1-60");
     num3a=parseInt(num3);
     createGrid(num3);
+    randomColorEffect();
   });
 });
 
@@ -46,4 +49,27 @@ function createGrid(numb){
 //get rid of old squares to make way for the new ones
  function clearGrid(){
  $('.square').remove();
+};
+//when the mouse is over a square it will turn red
+function defaultSettingEffect(){
+  $('.square').mouseover(function(){
+    $(this).addClass("defaultSettingEffect");
+  });
+};
+//when the
+function lightenUpEffect(){
+  
+  $('.square').mouseover(function(){
+      var squareOpacity=$(this).css('opacity');
+      if (squareOpacity>0){
+          $(this).css('opacity',squareOpacity -.25);
+      };
+  });
+};
+function randomColorEffect(){
+ $('.square').mouseover(function(){
+   //beautifully simple rgb random color generator on from Sam Deering http://www.sitepoint.com/generating-random-color-values/
+  var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+   $(this).css("background-color", hue);
+});
 };
